@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mural de Conselhos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Newsreader:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>Mural de Conselhos</h1>
+    <p>Sorteie um conselho, guarde os melhores e escreva os seus.</p>
+  </header>
+
+  <main>
+    <!-- API externa: Advice Slip (conselho) + MyMemory (tradução) -->
+    <section class="sorteio" aria-live="polite">
+      <div class="slip" id="slip">
+        <p class="rotulo">Conselho sorteado pela API Advice Slip</p>
+        <blockquote id="conselho" class="conselho">Buscando conselho…</blockquote>
+        <p id="original" class="original"></p>
+        <div class="acoes">
+          <button id="btn-novo" class="btn primario">Novo conselho</button>
+          <button id="btn-guardar" class="btn" disabled>Fixar no mural</button>
+          <button id="btn-copiar" class="btn" disabled>Copiar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="mural-area">
+      <div class="cabecalho">
+        <h2>Meu mural</h2>
+        <button id="btn-escrever" class="btn primario">Escrever frase</button>
+      </div>
+      <p id="stats" class="stats"></p>
+      <div class="filtros">
+        <input id="busca" type="search" placeholder="Buscar no mural" aria-label="Buscar no mural">
+        <select id="f-cor" aria-label="Filtrar por cor">
+          <option value="">Todas as cores</option>
+          <option value="amarelo">Amarelo</option><option value="verde">Verde</option>
+          <option value="lilas">Lilás</option><option value="pessego">Pêssego</option>
+        </select>
+        <label class="chk"><input id="f-fav" type="checkbox"> Só favoritas</label>
+      </div>
+      <div id="mural" class="mural"></div>
+      <p id="vazio" class="vazio" hidden></p>
+    </section>
+  </main>
+
+  <dialog id="dlg">
+    <form id="form" autocomplete="off">
+      <h2 id="form-titulo">Escrever frase</h2>
+      <label for="texto">Frase</label>
+      <textarea id="texto" rows="3" maxlength="300" required placeholder="Ex.: Devagar também se chega lá."></textarea>
+      <label for="nota">Minha reflexão (opcional)</label>
+      <input id="nota" type="text" maxlength="160" placeholder="Por que essa frase importa para você?">
+      <label for="cor">Cor da nota</label>
+      <select id="cor">
+        <option value="amarelo">Amarelo</option><option value="verde">Verde</option>
+        <option value="lilas">Lilás</option><option value="pessego">Pêssego</option>
+      </select>
+      <div class="acoes">
+        <button type="submit" id="btn-salvar" class="btn primario">Fixar no mural</button>
+        <button type="button" id="btn-cancelar" class="btn">Cancelar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="aviso" class="aviso" role="status" hidden></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
